@@ -6,14 +6,17 @@
 //
 
 import UIKit
+import MapKit
 
 class ViewController: UIViewController {
     
-    var item = ""
+    
+    @IBOutlet weak var myMap: MKMapView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(item)
+        
     }
 
 

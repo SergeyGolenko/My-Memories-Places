@@ -7,35 +7,68 @@
 
 import UIKit
 
+
+var places = [Dictionary<String,String>()]
+
 class MyPlacesTableViewController: UITableViewController {
     
-    let array = ["Kate","Love","Maks"]
+    var activePlace = -1
+    
+  
+    var itemWill = "Love is"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if places.count == 1 && places[0].count == 0 {
+            print(places.count)
+            places.remove(at: 0)
+            places.append(["name":"Kiev","lat":"545,656","lon":"334,56"])
+            tableView.reloadData()
+        }
+        
+    }
+    // MARK:- Table view delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        activePlace = indexPath.row
+        performSegue(withIdentifier: "goToSecondVC", sender: nil)
+      
+     
+          
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return array.count
+        return places.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = array[indexPath.row]
+         
+       //if places[indexPath.row]["name"] != nil{
+            cell.textLabel?.text = places[indexPath.row]["name"]
+        
         return cell
     }
     
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToSecondVC" {
-         if let twoVC =  segue.destination as? ViewController {
-            twoVC.item = "TTT"
+      
+            if segue.identifier == "goToSecondVC" {
+             if let twoVC =  segue.destination as? ViewController {
+                twoVC.item = self.itemWill
+               
+                }
             }
         }
-    }
+        
+   
+    
+    
+ 
 
 
 }

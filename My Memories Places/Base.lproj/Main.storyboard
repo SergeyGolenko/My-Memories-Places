@@ -47,10 +47,24 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8ct-Ph-AIg">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            </mapView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8ct-Ph-AIg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="6cZ-Iu-4o6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8ct-Ph-AIg" secondAttribute="trailing" id="Rla-2o-FEL"/>
+                            <constraint firstItem="8ct-Ph-AIg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bGs-zu-4OF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8ct-Ph-AIg" secondAttribute="bottom" id="maZ-jF-nzQ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PHC-nH-ec7"/>
+                    <connections>
+                        <outlet property="myMap" destination="8ct-Ph-AIg" id="3dj-vr-aqd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -72,7 +86,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MC8-aZ-XDv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-739.13043478260875" y="140.625"/>
+            <point key="canvasLocation" x="-671" y="216"/>
         </scene>
     </scenes>
     <resources>
