@@ -34,7 +34,13 @@
                             <outlet property="delegate" destination="0Ov-8N-oRf" id="6h1-c9-T8T"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="lCT-Ei-1am"/>
+                    <navigationItem key="navigationItem" id="lCT-Ei-1am">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wT9-Wb-yTm">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="goMap" id="IA5-Ys-oj8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yHf-Dp-7Qr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -50,6 +56,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8ct-Ph-AIg">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="DuS-LH-WOq"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -68,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1081" y="141"/>
+            <point key="canvasLocation" x="1322" y="141"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qG0-T8-3Ex">
@@ -89,6 +98,9 @@
             <point key="canvasLocation" x="-671" y="216"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="IA5-Ys-oj8"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

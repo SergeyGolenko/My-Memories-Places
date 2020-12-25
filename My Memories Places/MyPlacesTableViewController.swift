@@ -9,32 +9,35 @@ import UIKit
 
 
 var places = [Dictionary<String,String>()]
+var activePlace = -1
 
 class MyPlacesTableViewController: UITableViewController {
     
-    var activePlace = -1
-    
   
-    var itemWill = "Love is"
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
         if places.count == 1 && places[0].count == 0 {
-            print(places.count)
             places.remove(at: 0)
             places.append(["name":"Kiev","lat":"545,656","lon":"334,56"])
-            tableView.reloadData()
+            places.append(["name":"Kharkov","lat":"545,656","lon":"334,56"])
         }
-        
+        activePlace = -1
+        tableView.reloadData()
     }
+    
+    
+    
+    
     // MARK:- Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         activePlace = indexPath.row
-        performSegue(withIdentifier: "goToSecondVC", sender: nil)
-      
-     
-          
     }
 
     // MARK: - Table view data source
@@ -47,9 +50,9 @@ class MyPlacesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
          
-       //if places[indexPath.row]["name"] != nil{
+       if places[indexPath.row]["name"] != nil{
             cell.textLabel?.text = places[indexPath.row]["name"]
-        
+       }
         return cell
     }
     
@@ -59,7 +62,7 @@ class MyPlacesTableViewController: UITableViewController {
       
             if segue.identifier == "goToSecondVC" {
              if let twoVC =  segue.destination as? ViewController {
-                twoVC.item = self.itemWill
+                
                
                 }
             }
