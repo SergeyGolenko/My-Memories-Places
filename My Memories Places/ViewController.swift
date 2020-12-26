@@ -28,6 +28,11 @@ class ViewController: UIViewController,MKMapViewDelegate{
                                 let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                                 let region = MKCoordinateRegion(center: coordinate, span: span)
                                 self.myMap.setRegion(region, animated: true)
+                                
+                                let annotation = MKPointAnnotation()
+                                annotation.coordinate = coordinate
+                                annotation.title = name
+                                self.myMap.addAnnotation(annotation)
                                  
                             }
                         }
