@@ -16,7 +16,10 @@ class ViewController: UIViewController,MKMapViewDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(activePlace)
+        
+        longPressGestureRecognise()
+        
+        
         
         if activePlace != -1 {
             if let name = places[activePlace]["name"]{
@@ -42,6 +45,29 @@ class ViewController: UIViewController,MKMapViewDelegate{
         }
     }
 
+    
+    func longPressGestureRecognise(){
+        let longPressGestureRecognise = UILongPressGestureRecognizer(target: self, action: #selector(longpress(gesture:)))
+        longPressGestureRecognise.minimumPressDuration = 3
+        myMap.addGestureRecognizer(longPressGestureRecognise)
+        
+    }
+    
+    
+    @objc func longpress(gesture: UIGestureRecognizer){
+        
+        let touchPoint = gesture.location(in: self.myMap)
+        let newCoordinate = self.myMap.convert(touchPoint, toCoordinateFrom: self.myMap)
+        print(newCoordinate)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = newCoordinate
+        annotation.title = "Temp title"
+        self.myMap.addAnnotation(annotation)
+        
+         
+        
+        
+    }
 
 }
 
