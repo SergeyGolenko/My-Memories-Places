@@ -25,8 +25,12 @@ class MyPlacesTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         if places.count == 1 && places[0].count == 0 {
             places.remove(at: 0)
-            places.append(["name":"Kiev","lat":"545,656","lon":"334,56"])
-            places.append(["name":"Kharkov","lat":"545,656","lon":"334,56"])
+            places.append(["name":"Kiev","lat":"50.4547","lon":"30.5238"])
+            places.append(["name":"Kharkov","lat":"49.988358","lon":"36.232845"])
+            places.append(["name":"Dnipro","lat":"48.450001","lon":"34.983334"])
+            places.append(["name":"Odessa","lat":"46.4667","lon":"30.7333"])
+            places.append(["name":"Zaporizhzhia ","lat":"47.85167","lon":"35.11714"])
+   
         }
         activePlace = -1
         tableView.reloadData()
