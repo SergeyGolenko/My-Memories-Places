@@ -22,8 +22,6 @@ class ViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelega
     }
     
     
-    
-
     //MARK: - Custom methods
     func longPressGestureRecognise(){
         let longPressGestureRecognise = UILongPressGestureRecognizer(target: self, action: #selector(longpress(gesture:)))
@@ -62,15 +60,7 @@ class ViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelega
             }
         }
     }
-    
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        let region = MKCoordinateRegion(center: location, span: span)
-        self.myMap.setRegion(region, animated: true)
-    }
-    
+ 
     
     @objc func longpress(gesture: UIGestureRecognizer){
         
@@ -103,11 +93,21 @@ class ViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelega
                 annotation.title = titleM
                 self.myMap.addAnnotation(annotation)
                 places.append(["name":titleM,"lat":String(newCoordinate.latitude),"lon":String(newCoordinate.longitude)])
-                
+                UserDefaults.standard.setValue(places, forKey: key)
             }
        
         }
     }
+    
+    
+    //MARK: - LocationManager
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: location, span: span)
+        self.myMap.setRegion(region, animated: true)
+    }
+    
 
 }
 
