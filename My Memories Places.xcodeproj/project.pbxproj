@@ -14,6 +14,7 @@
 		2C40EDA32596260B0084D185 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C40EDA22596260B0084D185 /* Assets.xcassets */; };
 		2C40EDA62596260B0084D185 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C40EDA42596260B0084D185 /* LaunchScreen.storyboard */; };
 		2C40EDB0259627DB0084D185 /* MyPlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C40EDAF259627DB0084D185 /* MyPlacesTableViewController.swift */; };
+		2C40EDDC259797F70084D185 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C40EDDB259797F70084D185 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		2C40EDA52596260B0084D185 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C40EDA72596260B0084D185 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C40EDAF259627DB0084D185 /* MyPlacesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlacesTableViewController.swift; sourceTree = "<group>"; };
+		2C40EDDB259797F70084D185 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C40EDDC259797F70084D185 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +47,7 @@
 			children = (
 				2C40ED98259626080084D185 /* My Memories Places */,
 				2C40ED97259626080084D185 /* Products */,
+				2C40EDDA259797F70084D185 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +72,14 @@
 				2C40EDA72596260B0084D185 /* Info.plist */,
 			);
 			path = "My Memories Places";
+			sourceTree = "<group>";
+		};
+		2C40EDDA259797F70084D185 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C40EDDB259797F70084D185 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

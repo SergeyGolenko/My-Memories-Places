@@ -7,12 +7,13 @@
 
 import UIKit
 import MapKit
+import CoreData
 
-class ViewController: UIViewController,MKMapViewDelegate{
+class ViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate{
     
     
     @IBOutlet weak var myMap: MKMapView!
-    
+    var manager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,13 @@ class ViewController: UIViewController,MKMapViewDelegate{
     }
     
     func loadMapCity(){
-        if activePlace != -1 {
+        if activePlace == -1 {
+            manager.delegate = self
+            manager.desiredAccuracy = kCLLocationAccuracyBest
+            manager.requestWhenInUseAuthorization()
+            manager.startUpdatingLocation()
+            
+         }else{
             if let name = places[activePlace]["name"]{
                 if let lat = places[activePlace]["lat"]{
                     if let lon = places[activePlace]["lon"]{
@@ -54,6 +61,14 @@ class ViewController: UIViewController,MKMapViewDelegate{
                 }
             }
         }
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: location, span: span)
+        self.myMap.setRegion(region, animated: true)
     }
     
     
