@@ -22,9 +22,6 @@ class ViewController: UIViewController,MKMapViewDelegate{
     
     
     
-    
-    
-    
 
     //MARK: - Custom methods
     func longPressGestureRecognise(){
@@ -70,7 +67,7 @@ class ViewController: UIViewController,MKMapViewDelegate{
             
             CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
                 if error != nil {
-                    print(error)
+                    print("ERROR!!! - \(error)")
                 }else{
                     if let placematk = placemarks?[0]{
                         if placematk.subThoroughfare != nil {
@@ -81,10 +78,16 @@ class ViewController: UIViewController,MKMapViewDelegate{
                         }
                     }
                 }
+                
+                if titleM == ""{
+                    titleM = "Added \(NSDate())"
+                }
+                
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = newCoordinate
                 annotation.title = titleM
                 self.myMap.addAnnotation(annotation)
+                places.append(["name":titleM,"lat":String(newCoordinate.latitude),"lon":String(newCoordinate.longitude)])
                 
             }
        
