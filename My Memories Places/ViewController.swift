@@ -16,11 +16,25 @@ class ViewController: UIViewController,MKMapViewDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         longPressGestureRecognise()
+        loadMapCity()
+    }
+    
+    
+    
+    
+    
+    
+
+    //MARK: - Custom methods
+    func longPressGestureRecognise(){
+        let longPressGestureRecognise = UILongPressGestureRecognizer(target: self, action: #selector(longpress(gesture:)))
+        longPressGestureRecognise.minimumPressDuration = 3
+        myMap.addGestureRecognizer(longPressGestureRecognise)
         
-        
-        
+    }
+    
+    func loadMapCity(){
         if activePlace != -1 {
             if let name = places[activePlace]["name"]{
                 if let lat = places[activePlace]["lat"]{
@@ -44,29 +58,37 @@ class ViewController: UIViewController,MKMapViewDelegate{
             }
         }
     }
-
-    
-    func longPressGestureRecognise(){
-        let longPressGestureRecognise = UILongPressGestureRecognizer(target: self, action: #selector(longpress(gesture:)))
-        longPressGestureRecognise.minimumPressDuration = 3
-        myMap.addGestureRecognizer(longPressGestureRecognise)
-        
-    }
     
     
     @objc func longpress(gesture: UIGestureRecognizer){
         
+        if gesture.state == UIGestureRecognizer.State.began{
         let touchPoint = gesture.location(in: self.myMap)
         let newCoordinate = self.myMap.convert(touchPoint, toCoordinateFrom: self.myMap)
-        print(newCoordinate)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = newCoordinate
-        annotation.title = "Temp title"
-        self.myMap.addAnnotation(annotation)
-        
-         
-        
-        
+        let location = CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude)
+        var titleM = ""
+            
+            CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
+                if error != nil {
+                    print(error)
+                }else{
+                    if let placematk = placemarks?[0]{
+                        if placematk.subThoroughfare != nil {
+                            titleM += placematk.subThoroughfare! + " "
+                        }
+                        if placematk.thoroughfare != nil {
+                            titleM += placematk.thoroughfare!
+                        }
+                    }
+                }
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = newCoordinate
+                annotation.title = titleM
+                self.myMap.addAnnotation(annotation)
+                
+            }
+       
+        }
     }
 
 }
