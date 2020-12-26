@@ -12,11 +12,10 @@ var places = [Dictionary<String,String>()]
 var activePlace = -1
 let key = "13252354654ygdfgtytbdfbtytwywy"
 
-class MyPlacesTableViewController: UITableViewController {
-    
-  
-    
 
+
+
+class MyPlacesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,7 +38,7 @@ class MyPlacesTableViewController: UITableViewController {
    
         }
         
-                activePlace = -1
+            activePlace = -1
         tableView.reloadData()
     }
     
